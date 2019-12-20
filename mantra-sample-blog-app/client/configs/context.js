@@ -6,6 +6,11 @@ import {Tracker} from 'meteor/tracker';
 import { AccountsClient } from 'meteor/accounts-base'
 
 export default function () {
+  Meteor._localStorage.setItem('color', 'red', 'u0')
+  Meteor._localStorage.setItem('color', 'blue', 'u1')
+  Meteor._localStorage.setItem('color', 'green', 'u2')
+  Meteor._localStorage.setItem('color', 'purple', 'u3')
+
   const lastAccount = JSON.parse(localStorage.getItem('lastAccount'))
 
   const accounts = JSON.parse(localStorage.getItem('accounts')).map(account => ({

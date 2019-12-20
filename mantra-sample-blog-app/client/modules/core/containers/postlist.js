@@ -6,11 +6,10 @@ export const composer = ({context}, onData) => {
   const lastAccount = LocalState.get('lastAccount')
   const targetUserCollections = _Collections[lastAccount]
   const targetUserId = targetUserCollections.users.userId()
-  console.log(targetUserId)
+
   if (targetUserCollections.connection.subscribe('posts.list').ready()) {
     const posts = targetUserCollections.posts.find({ userId: targetUserId }).fetch();
-    console.log(posts)
-    onData(null, {posts});
+    onData(null, { posts, lastAccount });
   }
 };
 
