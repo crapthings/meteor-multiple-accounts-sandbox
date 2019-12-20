@@ -1,11 +1,11 @@
 # meteor-multiple-accounts-sandbox
 
 ```
-cd testaccounts
+cd mantra-sample-blog-app
 meteor
 ```
 
 ```
-cd testaccounts2
+cd mantra-sample-blog-app-2
 meteor --port 3100
 ```
