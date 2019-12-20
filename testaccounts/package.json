@@ -1,0 +1,18 @@
+{
+  "name": "testaccounts",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.6.0",
+    "meteor-node-stubs": "^1.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/plugin-proposal-pipeline-operator": "^7.7.4"
+  }
+}

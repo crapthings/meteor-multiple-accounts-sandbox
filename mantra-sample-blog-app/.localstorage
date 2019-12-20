@@ -1,0 +1,6 @@
+[
+  { "username": "demo", "password": "demo", "url": "http://localhost:3000" },
+  { "username": "demo1", "password": "demo1", "url": "http://localhost:3000" },
+  { "username": "demo", "password": "demo", "url": "http://localhost:3100" },
+  { "username": "demo1", "password": "demo1", "url": "http://localhost:3100" }
+]
