@@ -13,7 +13,8 @@ import {AccountsCommon} from "./accounts_common.js";
 export class AccountsClient extends AccountsCommon {
   constructor(options) {
     super(options);
-    this.namespaceIdx = options && options.namespaceIdx;
+
+    this.namespace = options && options.namespace;
 
     this._loggingIn = new ReactiveVar(false);
     this._loggingOut = new ReactiveVar(false);
@@ -491,11 +492,11 @@ export class AccountsClient extends AccountsCommon {
   };
 
   _storeLoginToken(userId, token, tokenExpires) {
-    Meteor._localStorage.setItem(this.USER_ID_KEY, userId);
-    Meteor._localStorage.setItem(this.LOGIN_TOKEN_KEY, token);
+    Meteor._localStorage.setItem(this.USER_ID_KEY, userId, this.namespace);
+    Meteor._localStorage.setItem(this.LOGIN_TOKEN_KEY, token, this.namespace);
     if (! tokenExpires)
       tokenExpires = this._tokenExpiration(new Date());
-    Meteor._localStorage.setItem(this.LOGIN_TOKEN_EXPIRES_KEY, tokenExpires);
+    Meteor._localStorage.setItem(this.LOGIN_TOKEN_EXPIRES_KEY, tokenExpires, this.namespace);
 
     // to ensure that the localstorage poller doesn't end up trying to
     // connect a second time
@@ -503,9 +504,9 @@ export class AccountsClient extends AccountsCommon {
   };
 
   _unstoreLoginToken() {
-    Meteor._localStorage.removeItem(this.USER_ID_KEY);
-    Meteor._localStorage.removeItem(this.LOGIN_TOKEN_KEY);
-    Meteor._localStorage.removeItem(this.LOGIN_TOKEN_EXPIRES_KEY);
+    Meteor._localStorage.removeItem(this.USER_ID_KEY, this.namespace);
+    Meteor._localStorage.removeItem(this.LOGIN_TOKEN_KEY, this.namespace);
+    Meteor._localStorage.removeItem(this.LOGIN_TOKEN_EXPIRES_KEY, this.namespace);
 
     // to ensure that the localstorage poller doesn't end up trying to
     // connect a second time
@@ -515,15 +516,15 @@ export class AccountsClient extends AccountsCommon {
   // This is private, but it is exported for now because it is used by a
   // test in accounts-password.
   _storedLoginToken() {
-    return Meteor._localStorage.getItem(this.LOGIN_TOKEN_KEY);
+    return Meteor._localStorage.getItem(this.LOGIN_TOKEN_KEY, this.namespace);
   };
 
   _storedLoginTokenExpires() {
-    return Meteor._localStorage.getItem(this.LOGIN_TOKEN_EXPIRES_KEY);
+    return Meteor._localStorage.getItem(this.LOGIN_TOKEN_EXPIRES_KEY, this.namespace);
   };
 
   _storedUserId() {
-    return Meteor._localStorage.getItem(this.USER_ID_KEY);
+    return Meteor._localStorage.getItem(this.USER_ID_KEY, this.namespace);
   };
 
   _unstoreLoginTokenIfExpiresSoon() {
@@ -558,12 +559,6 @@ export class AccountsClient extends AccountsCommon {
       this.LOGIN_TOKEN_KEY += namespace;
       this.LOGIN_TOKEN_EXPIRES_KEY += namespace;
       this.USER_ID_KEY += namespace;
-    }
-
-    if (this.namespaceIdx) {
-      this.LOGIN_TOKEN_KEY += ':' + this.namespaceIdx;
-      this.LOGIN_TOKEN_EXPIRES_KEY += ':' + this.namespaceIdx;
-      this.USER_ID_KEY += ':' + this.namespaceIdx;
     }
 
     let token;

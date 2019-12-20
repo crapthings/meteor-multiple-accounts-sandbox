@@ -15,16 +15,14 @@ export default function () {
 
   const LocalState = new ReactiveDict({ lastAccount })
 
-  const _Collections = accounts.map((_account, namespaceIdx) => {
+  const _Collections = accounts.map((_account, namespace) => {
     const mongo = { ...Mongo }
     const connection = DDP.connect(_account.url)
-    const account = new AccountsClient({ connection, namespaceIdx: 'u' + namespaceIdx })
+    const account = new AccountsClient({ connection, namespace: 'u' + namespace })
     const posts = new Mongo.Collection('posts', { connection })
     loginWithPassword(account, _account)
     return { connection, users: account, posts }
   })
-
-  console.log(_Collections)
 
   Tracker.autorun(() => {
     const lastAccount = LocalState.get('lastAccount')

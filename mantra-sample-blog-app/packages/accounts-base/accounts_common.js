@@ -13,12 +13,12 @@ export class AccountsCommon {
     // and accounts-ui-unstyled.
     this._options = {};
 
+    this.namespace = options && options.namespace;
+
     // Note that setting this.connection = null causes this.users to be a
     // LocalCollection, which is not what we want.
     this.connection = undefined;
     this._initConnection(options || {});
-
-    this.namespaceIdx = options && options.namespaceIdx;
 
     // There is an allow call in accounts_server.js that restricts writes to
     // this collection.
