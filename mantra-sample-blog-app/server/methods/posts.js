@@ -13,8 +13,9 @@ export default function () {
       Meteor._sleepForMs(500);
 
       // XXX: Do some user authorization
+      const userId = this.userId
       const createdAt = new Date();
-      const post = {_id, title, content, createdAt};
+      const post = {_id, title, content, userId, createdAt};
       Posts.insert(post);
     }
   });

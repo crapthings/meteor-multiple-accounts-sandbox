@@ -1,15 +1,19 @@
 export default {
-  create({Meteor, LocalState, FlowRouter}, title, content) {
+  create({Meteor, LocalState, FlowRouter, _Collections}, title, content) {
+
     if (!title || !content) {
       return LocalState.set('SAVING_ERROR', 'Title & Content are required!');
     }
 
     LocalState.set('SAVING_ERROR', null);
 
-    const id = Meteor.uuid();
+    const id = Random.id();
     // There is a method stub for this in the config/method_stubs
     // That's how we are doing latency compensation
-    Meteor.call('posts.create', id, title, content, (err) => {
+    const lastAccount = LocalState.get('lastAccount')
+    const targetUserCollections = _Collections[lastAccount]
+
+    targetUserCollections.connection.call('posts.create', id, title, content, (err) => {
       if (err) {
         return LocalState.set('SAVING_ERROR', err.message);
       }

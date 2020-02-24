@@ -3,6 +3,7 @@ import CommentList from '../../comments/containers/comment_list';
 
 const Post = ({post}) => (
   <div>
+    {console.log(post)}
     {post.saving ? <p>Saving...</p> : null}
     <h2>{post.title}</h2>
     <p>

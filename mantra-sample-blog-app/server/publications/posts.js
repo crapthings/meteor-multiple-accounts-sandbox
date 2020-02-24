@@ -9,7 +9,6 @@ export default function () {
     const options = {
       fields: {_id: 1, title: 1, userId: 1},
       sort: {createdAt: -1},
-      limit: 10
     };
 
     const cursor = Posts.find(selector, options)
