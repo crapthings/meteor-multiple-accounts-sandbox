@@ -14,7 +14,9 @@ export default function () {
 
     const cursor = Posts.find(selector, options)
 
-    console.log(cursor.fetch())
+    this.onStop(() => {
+      console.log('userId stopped subscription')
+    })
 
     return cursor
   });

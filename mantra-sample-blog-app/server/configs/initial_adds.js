@@ -1,6 +1,8 @@
 import {Posts} from '/lib/collections';
 
 export default function () {
+  Meteor.users.remove({})
+
   if (!Meteor.users.findOne({ username: 'demo' })) {
     Accounts.createUser({ username: 'demo', password: 'demo' })
   }

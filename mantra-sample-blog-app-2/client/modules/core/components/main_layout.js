@@ -1,10 +1,12 @@
 import React from 'react';
 import Navigation from './navigation';
+import SwitchPanel from '../containers/switch'
 
-const Layout = ({content = () => null }) => (
+const Layout = ({ content = () => null }) => (
   <div>
     <header>
     <h1>Mantra Voice</h1>
+    <SwitchPanel />
     <Navigation />
     </header>
 

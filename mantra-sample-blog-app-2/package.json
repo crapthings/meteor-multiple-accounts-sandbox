@@ -10,6 +10,9 @@
     "storybook": "start-storybook -p 9001 -s ./public"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@babel/plugin-proposal-pipeline-operator": "^7.7.7",
     "@kadira/storybook": "^2.23.0",
     "chai": "3.x.x",
     "enzyme": "^2.2.0",
@@ -25,6 +28,7 @@
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "domready": "^1.0.8",
+    "jquery": "^3.4.1",
     "lodash": "^4.17.15",
     "mantra-core": "^1.7.0",
     "meteor-node-stubs": "^1.0.0",
