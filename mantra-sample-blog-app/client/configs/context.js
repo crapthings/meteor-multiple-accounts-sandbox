@@ -6,6 +6,17 @@ import {Tracker} from 'meteor/tracker';
 import { AccountsClient } from 'meteor/accounts-base'
 
 export default function () {
+  // 演示用数据，这部分应该自己存储登录用 token 或者密码
+  localStorage.setItem('lastAccount', 0)
+
+  localStorage.setItem('accounts', JSON.stringify([
+    { username: 'demo', password: 'demo', url: 'http://localhost:3000' },
+    { username: 'demo1', password: 'demo1', url: 'http://localhost:3000' },
+    { username: 'demo', password: 'demo', url: 'http://localhost:3100' },
+    { username: 'demo2', password: 'demo2', url: 'http://localhost:3100' },
+  ]))
+
+  //
   Meteor._localStorage.setItem('color', 'red', 'u0')
   Meteor._localStorage.setItem('color', 'blue', 'u1')
   Meteor._localStorage.setItem('color', 'green', 'u2')
@@ -13,7 +24,7 @@ export default function () {
 
   const lastAccount = JSON.parse(localStorage.getItem('lastAccount'))
 
-  const accounts = JSON.parse(localStorage.getItem('accounts')).map(account => ({
+  const accounts = (JSON.parse(localStorage.getItem('accounts')) || []).map(account => ({
     failed: new ReactiveVar(false),
     ...account
   }))
