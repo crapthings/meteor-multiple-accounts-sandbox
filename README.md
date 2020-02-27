@@ -32,6 +32,8 @@
 
 - 通过 namespace 每个用户都可以有自定的 localstorage 空间 [引用](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/mantra-sample-blog-app/client/configs/context.js#L20)
 
+- 决定用户 localstorage 的 namespace [引用](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/mantra-sample-blog-app/client/configs/context.js#L37)
+
 # meteor-multiple-accounts-sandbox
 
 ```
