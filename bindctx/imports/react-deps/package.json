@@ -1,0 +1,10 @@
+{
+  "name": "react-deps",
+  "private": true,
+  "scripts": {
+    "bootstrap": "npx lerna bootstrap"
+  },
+  "devDependencies": {
+    "lerna": "^3.x.x"
+  }
+}

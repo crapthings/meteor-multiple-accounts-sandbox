@@ -1,0 +1,53 @@
+{
+  "name": "@lvfang/mantra-core",
+  "version": "2.0.1",
+  "description": "Core API for Mantra",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mantrajs/mantra-core.git"
+  },
+  "license": "MIT",
+  "main": "dist/index.js",
+  "options": {
+    "mocha": "--require scripts/mocha_runner src/**/__tests__/**/*.js"
+  },
+  "scripts": {
+    "prepare": ". ./scripts/prepublish.sh",
+    "standard": "standard --fix",
+    "testonly": "mocha $npm_package_options_mocha",
+    "test": "npm run standard && npm run testonly",
+    "test-watch": "npm run testonly -- --watch --watch-extensions js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "@babel/runtime": "^7.8.3",
+    "babel-eslint": "^10.0.3",
+    "chai": "^4.2.0",
+    "eslint": "^6.8.0",
+    "mocha": "^7.0.0",
+    "nodemon": "^2.0.2",
+    "react": "^16.12.0",
+    "standard": "^14.3.1"
+  },
+  "peerDependencies": {
+    "@babel/runtime": "^7.x.x"
+  },
+  "dependencies": {
+    "@lvfang/react-komposer": "^2.3.1",
+    "@lvfang/react-simple-di": "^1.4.0"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  }
+}

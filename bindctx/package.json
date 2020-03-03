@@ -1,0 +1,17 @@
+{
+  "name": "mantra-demo",
+  "version": "0.4.1",
+  "dependencies": {
+    "@babel/runtime": "^7.8.4",
+    "@lvfang/react-komposer": "^2.3.1",
+    "@lvfang/react-simple-di": "^1.4.0",
+    "domready": "^1.0.8",
+    "lodash": "^4.17.15",
+    "mantra-core": "^1.7.0",
+    "meteor-node-stubs": "^1.0.0",
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-mounter": "^1.2.0"
+  },
+  "private": true
+}
