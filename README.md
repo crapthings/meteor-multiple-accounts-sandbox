@@ -79,3 +79,12 @@ meteor --port 3100
 - 设置一套切换逻辑 somehow [引用1](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/client/main.js#L23) [引用2](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/client/main.js#L41)
 
 - [切换用户](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/client/modules/core/components/main_layout.js#L11)
+
+### Issue
+
+route and action 还是没有 ctx
+
+我尝试把 mantra-core 改成 mutable，但是 react-di 是 immutable，我们应用在 useDeps 时候也是 immutable
+要改的地方还不少，而且这样可能在 函数的参数里有 数组和 array 时候，会不会因为使用问题导致 bug
+
+https://github.com/crapthings/meteor-multiple-accounts-sandbox/tree/diginto
