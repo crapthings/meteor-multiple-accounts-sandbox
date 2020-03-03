@@ -16,14 +16,14 @@ export default class App {
 
   _bindActions (_actions) {
     const actions = {}
+
     for (const key in _actions) {
       if (hasOwnProperty(_actions, key)) {
         const actionMap = _actions[key]
         const newActionMap = {}
         for (const actionName in actionMap) {
           if (hasOwnProperty(actionMap, actionName)) {
-            newActionMap[actionName] =
-              actionMap[actionName].bind(null, this.context)
+            newActionMap[actionName] = actionMap[actionName].bind(null, this.context)
           }
         }
         actions[key] = newActionMap
@@ -33,9 +33,17 @@ export default class App {
     return actions
   }
 
-  bindContext (context) {
+  bindContext = (context) => {
+    console.log('before bind', this.context)
+    this.context = context
+
+    console.log('after bind', this.context)
+
     for (const module of this.modules) {
-      module.load(this.context)
+      const boundedActions = this._bindActions(this.actions)
+      this.actions = boundedActions
+      console.log(boundedActions)
+      module.load(this.context, boundedActions)
     }
 
     return context

@@ -79,3 +79,7 @@ meteor --port 3100
 - 设置一套切换逻辑 somehow [引用1](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/client/main.js#L23) [引用2](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/client/main.js#L41)
 
 - [切换用户](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/client/modules/core/components/main_layout.js#L11)
+
+### ISSUE
+
+- routes, 包括 actions 已现在的结构没法注入 ctx

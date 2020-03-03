@@ -6,9 +6,9 @@ import coreModule from './modules/core';
 import commentsModule from './modules/comments';
 
 // port 3100 代码不一样
-Reload._onMigrate(function() {
-  return [false]
-})
+// Reload._onMigrate(function() {
+//   return [false]
+// })
 
 // mock accounts here
 localStorage.setItem('contextId', 0)
@@ -46,7 +46,6 @@ Meteor.startup(function () {
     if (firstRun) return
     const ctx = app.bindContext(contexts[ctxId])
     const { account } = ctx
-    console.log(account)
 
     Meteor.connection._stream.disconnect()
     Meteor.connection._stream._changeUrl(account.url)

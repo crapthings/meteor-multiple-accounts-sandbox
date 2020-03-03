@@ -6,8 +6,10 @@ import PostList from './containers/postlist';
 import Post from './containers/post';
 import NewPost from './containers/newpost';
 
-export default function (injectDeps, {FlowRouter}) {
+export default function (injectDeps, { FlowRouter, ...ctx }) {
   const MainLayoutCtx = injectDeps(MainLayout);
+
+  console.dir(MainLayoutCtx)
 
   FlowRouter.route('/', {
     name: 'posts.list',
@@ -30,6 +32,7 @@ export default function (injectDeps, {FlowRouter}) {
   FlowRouter.route('/new-post', {
     name: 'newpost',
     action() {
+      console.log('ctx from route', ctx)
       mount(MainLayoutCtx, {
         content: () => (<NewPost/>)
       });
