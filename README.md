@@ -1,4 +1,20 @@
-# 简单说明
+# meteor-multiple-accounts-sandbox
+
+### 例1
+
+```
+cd mantra-sample-blog-app
+meteor npm i
+meteor
+```
+
+```
+cd mantra-sample-blog-app-2
+meteor npm i
+meteor --port 3100
+```
+
+### 简单说明
 
 - 采用 mantra 架构
 
@@ -34,10 +50,12 @@
 
 - 决定用户 localstorage 的 namespace [引用](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/mantra-sample-blog-app/client/configs/context.js#L37)
 
-# meteor-multiple-accounts-sandbox
+---
+
+### 例2
 
 ```
-cd mantra-sample-blog-app
+cd bindctx
 meteor npm i
 meteor
 ```
@@ -47,3 +65,17 @@ cd mantra-sample-blog-app-2
 meteor npm i
 meteor --port 3100
 ```
+
+### 简单说明
+
+- 采用 mantra 架构
+
+#### 修改核心 mantra-core 后
+
+- [支持 bindContext 方法，配合 tracker 重新绑定 ctx](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/imports/react-deps/packages/mantra-core/src/app.js#L36)
+
+#### 应用部分
+
+- 设置一套切换逻辑 somehow [引用1](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/client/main.js#L23) [引用2](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/client/main.js#L41)
+
+- [切换用户](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/client/modules/core/components/main_layout.js#L11)
