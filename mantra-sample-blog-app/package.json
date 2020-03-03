@@ -16,7 +16,7 @@
     "@kadira/storybook": "^2.23.0",
     "chai": "3.x.x",
     "enzyme": "^2.2.0",
-    "eslint": "^2.7.0",
+    "eslint": "^4.18.2",
     "eslint-plugin-react": "^4.3.0",
     "jsdom": "^8.0.4",
     "mocha": "2.x.x",
