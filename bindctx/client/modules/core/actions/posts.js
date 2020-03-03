@@ -1,6 +1,7 @@
 export default {
-  create({Meteor, LocalState, FlowRouter, ...ctx}, title, content) {
-    console.log('ctx from action', ctx)
+  create(context, title, content) {
+    const {Meteor, LocalState, FlowRouter, ...ctx} = context
+    console.log('ctx from action', context, ctx)
     if (!title || !content) {
       return LocalState.set('SAVING_ERROR', 'Title & Content are required!');
     }

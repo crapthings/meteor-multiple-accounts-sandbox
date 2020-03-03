@@ -36,14 +36,28 @@ export default class App {
   bindContext = (context) => {
     console.log('before bind', this.context)
     this.context = context
-
     console.log('after bind', this.context)
 
-    for (const module of this.modules) {
-      const boundedActions = this._bindActions(this.actions)
-      this.actions = boundedActions
-      console.log(boundedActions)
-      module.load(this.context, boundedActions)
+    for (const _key in this.actions) {
+      for (const key in this.actions[_key]) {
+        this.actions[_key][key].bind(null, this.context)
+      }
+    }
+
+    // for (const module of this.modules) {
+    //   const boundedActions = this._bindActions(this.actions)
+    //   this.actions = boundedActions
+    //   module.load(this.context, boundedActions)
+    // }
+
+    console.log(this.actions)
+
+    for (const routeFn of this._routeFns) {
+      const inject = comp => {
+        return injectDeps(this.context, this.actions)(comp)
+      }
+
+      routeFn.bind(null, inject, this.context, this.actions)
     }
 
     return context
@@ -73,10 +87,17 @@ export default class App {
 
     const actions = module.actions || {}
 
-    this.actions = {
-      ...this.actions,
-      ...actions
+    for (const _key in actions) {
+      if (!this.actions[_key]) {
+        this.actions[_key] = {}
+      }
+
+      for (const key in actions[_key]) {
+        this.actions[_key][key] = actions[_key][key]
+      }
     }
+
+    console.log(this.actions)
 
     if (module.load) {
       if (typeof module.load !== 'function') {
@@ -104,7 +125,7 @@ export default class App {
       routeFn(inject, this.context, this.actions)
     }
 
-    this._routeFns = []
+    // this._routeFns = []
     this.__initialized = true
   }
 

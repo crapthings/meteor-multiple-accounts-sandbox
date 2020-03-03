@@ -47,6 +47,8 @@ Meteor.startup(function () {
     const ctx = app.bindContext(contexts[ctxId])
     const { account } = ctx
 
+    console.log('switch ctx to', ctx)
+
     Meteor.connection._stream.disconnect()
     Meteor.connection._stream._changeUrl(account.url)
     Meteor.connection._stream.reconnect()
