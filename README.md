@@ -80,7 +80,7 @@ meteor --port 3100
 
 - [切换用户](https://github.com/crapthings/meteor-multiple-accounts-sandbox/blob/master/bindctx/client/modules/core/components/main_layout.js#L11)
 
-### Issue
+## Issue
 
 route and action 还是没有 ctx
 
@@ -89,7 +89,7 @@ route and action 还是没有 ctx
 
 https://github.com/crapthings/meteor-multiple-accounts-sandbox/tree/diginto
 
-mutate 例子
+### mutate 例子
 
 ```js
 const context0 = {
@@ -134,4 +134,45 @@ changeStatus0 after all { status: false, text: 'python text changed' } { status:
 before changeStatus1 { status: true, text: 'default context 1' }
 after changeStatus1 { status: false, text: 'javascript text changed' }
 changeStatus1 after all { status: true, text: 'default context 1' } { status: false, text: 'javascript text changed' }
+```
+
+### bind issue
+
+> "The bind() function creates a new function (a bound function) with the same function body (internal call property in ECMAScript 5 terms) as the function it is being called on (the bound function's target function) with the this value bound to the first argument of bind(), which cannot be overridden."
+
+```js
+let context1 = {
+  username: 'zhang hong',
+  status: true,
+}
+
+let context2 = {
+  username: 'kim jong un',
+  status: false,
+}
+
+const actions = {
+  changeStatus(context) {
+    console.log('before changeStatus', context)
+    context.status = false
+    console.log('after changeStatus', context)
+    return context
+  },
+}
+
+actions.changeStatus = actions.changeStatus.bind(null, context1)
+console.log('changeStatus after all', context1, actions.changeStatus(), '\n')
+context1 = context2
+actions.changeStatus = actions.changeStatus.bind(null, context2)
+console.log('changeStatus after all', context1, actions.changeStatus())
+```
+
+```
+before changeStatus { username: 'zhang hong', status: true }
+after changeStatus { username: 'zhang hong', status: false }
+changeStatus after all { username: 'zhang hong', status: false } { username: 'zhang hong', status: false }
+
+before changeStatus { username: 'zhang hong', status: false }
+after changeStatus { username: 'zhang hong', status: false }
+changeStatus after all { username: 'kim jong un', status: false } { username: 'zhang hong', status: false }
 ```
