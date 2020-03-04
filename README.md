@@ -176,3 +176,52 @@ before changeStatus { username: 'zhang hong', status: false }
 after changeStatus { username: 'zhang hong', status: false }
 changeStatus after all { username: 'kim jong un', status: false } { username: 'zhang hong', status: false }
 ```
+
+### redeclare before bind
+
+```js
+let context1 = {
+  username: 'zhang hong',
+  status: true,
+}
+
+let context2 = {
+  username: 'kim jong un',
+  status: false,
+}
+
+const actions = {
+  changeStatus(context) {
+    console.log('before changeStatus', context)
+    context.status = false
+    console.log('after changeStatus', context)
+    return context
+  },
+}
+
+actions.changeStatus = actions.changeStatus.bind(null, context1)
+console.log('changeStatus after all', context1, actions.changeStatus(), '\n')
+
+context1 = context2
+
+// save all fns into a place that we can redeclare before bind
+actions.changeStatus = function (context) {
+  console.log('before changeStatus', context)
+  context.status = true
+  console.log('after changeStatus', context)
+  return context
+}
+
+actions.changeStatus = actions.changeStatus.bind(null, context2)
+console.log('changeStatus after all', context1, actions.changeStatus())
+```
+
+```
+before changeStatus { username: 'zhang hong', status: true }
+after changeStatus { username: 'zhang hong', status: false }
+changeStatus after all { username: 'zhang hong', status: false } { username: 'zhang hong', status: false }
+
+before changeStatus { username: 'kim jong un', status: false }
+after changeStatus { username: 'kim jong un', status: true }
+changeStatus after all { username: 'kim jong un', status: true } { username: 'kim jong un', status: true }
+```
