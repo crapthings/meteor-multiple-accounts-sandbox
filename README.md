@@ -138,7 +138,7 @@ changeStatus1 after all { status: true, text: 'default context 1' } { status: fa
 
 ### bind issue
 
-> "The bind() function creates a new function (a bound function) with the same function body (internal call property in ECMAScript 5 terms) as the function it is being called on (the bound function's target function) with the this value bound to the first argument of bind(), which cannot be overridden."
+> "The bind() function creates a new function (a bound function) with the same function body (internal call property in ECMAScript 5 terms) as the function it is being called on (the bound function's target function) with the this value bound to the first argument of bind(), **which cannot be overridden.**"
 
 ```js
 let context1 = {
