@@ -88,3 +88,50 @@ route and action 还是没有 ctx
 要改的地方还不少，而且这样可能在 函数的参数里有 数组和 array 时候，会不会因为使用问题导致 bug
 
 https://github.com/crapthings/meteor-multiple-accounts-sandbox/tree/diginto
+
+mutate 例子
+
+```js
+const context0 = {
+  status: true,
+  text: 'default context 0',
+}
+
+const context1 = {
+  status: true,
+  text: 'default context 1',
+}
+
+const actions = {
+  changeStatus0(context0) {
+    console.log('before changeStatus0', context0)
+    context0.status = false
+    context0.text = 'python text changed'
+    console.log('after changeStatus0', context0)
+    return context0
+  },
+
+  changeStatus1({ ...context1 }) {
+    console.log('before changeStatus1', context1)
+    context1.status = false
+    context1.text = 'javascript text changed'
+    console.log('after changeStatus1', context1)
+    return context1
+  }
+}
+
+actions.changeStatus0 = actions.changeStatus0.bind(null, context0)
+actions.changeStatus1 = actions.changeStatus1.bind(null, context1)
+
+console.log('changeStatus0 after all', context0, actions.changeStatus0())
+console.log('changeStatus1 after all', context1, actions.changeStatus1())
+```
+
+```
+before changeStatus0 { status: true, text: 'default context 0' }
+after changeStatus0 { status: false, text: 'python text changed' }
+changeStatus0 after all { status: false, text: 'python text changed' } { status: false, text: 'python text changed' }
+before changeStatus1 { status: true, text: 'default context 1' }
+after changeStatus1 { status: false, text: 'javascript text changed' }
+changeStatus1 after all { status: true, text: 'default context 1' } { status: false, text: 'javascript text changed' }
+```
