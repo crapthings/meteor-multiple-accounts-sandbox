@@ -28,7 +28,7 @@
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "domready": "^1.0.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lodash": "^4.17.15",
     "mantra-core": "^1.7.0",
     "meteor-node-stubs": "^1.0.0",
