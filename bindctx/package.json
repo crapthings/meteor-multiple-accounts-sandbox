@@ -6,7 +6,7 @@
     "@lvfang/react-komposer": "^2.3.1",
     "@lvfang/react-simple-di": "^1.4.0",
     "domready": "^1.0.8",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mantra-core": "^1.7.0",
     "meteor-node-stubs": "^1.0.0",
     "react": "^15.0.0",
