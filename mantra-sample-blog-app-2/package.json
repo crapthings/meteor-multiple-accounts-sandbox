@@ -19,7 +19,7 @@
     "eslint": "^2.7.0",
     "eslint-plugin-react": "^4.3.0",
     "jsdom": "^8.0.4",
-    "mocha": "2.x.x",
+    "mocha": "10.x.x",
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^15.0.0",
     "sinon": "1.17.x",
