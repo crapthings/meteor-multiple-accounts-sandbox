@@ -35,7 +35,7 @@
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-react": "^7.17.0",
-    "mocha": "^7.0.0",
+    "mocha": "^10.2.0",
     "nodemon": "^2.0.2",
     "react": "^16.x.x",
     "react-dom": "^16.x.x",
